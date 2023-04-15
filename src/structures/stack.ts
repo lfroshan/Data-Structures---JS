@@ -1,44 +1,44 @@
 import { IStack } from "../interfaces/IStack";
 
 export class Stack<T> implements IStack<T> {
-  private stack: Array<T>;
+  private stack: Array<T | undefined>;
   private capacity: number;
   private index: number;
 
   constructor(capacity: number) {
-    this.index = 0;
+    this.index = -1;
     this.capacity = capacity;
     this.stack = new Array<T>(capacity);
   }
 
   push(item: T): void {
-    if (this.stack.length >= this.capacity) {
+    if (this.index >= this.capacity - 1) {
       throw new Error("Stack Overflow!");
     }
 
-    this.stack[this.index] = item;
+    this.stack[this.index + 1] = item;
     this.index += 1;
   }
 
   pop(): T | undefined {
-    if (this.stack.length <= 0) {
+    if (this.index < 0) {
       throw new Error("Stack Underflow!");
     }
 
+    this.stack[this.index] = undefined;
     this.index -= 1;
 
     return undefined;
   }
 
   peek(pointer: number): T | undefined {
-    if (pointer > 0 || pointer > (this.index + 1)) {
+    if (pointer < 0 || pointer > (this.index + 1)) {
       throw new Error("Cannot Peek the appointed position of stack");
     }
-    return this.stack[pointer];
+    return this.stack[pointer - 1];
   }
 
-  size(): number {
-    return this.stack.length;
+  getStack(): Array<T | undefined> {
+    return this.stack;
   }
-
 }

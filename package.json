@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "stack": "node build/structures/stack.js"
+    "stack": "node build/usecases/stackUseCase.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.15.11",
+    "@types/prompt-sync": "^4.2.0",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
   }
 }
